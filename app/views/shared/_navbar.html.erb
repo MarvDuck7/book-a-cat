@@ -1,6 +1,8 @@
 <div class="navbar-wagon">
   <!-- Logo -->
-  <%= link_to "Rent a cat", root_path, class: "navbar-wagon-brand" %>
+  <%= link_to root_path, class: "navbar-wagon-brand" do %>
+    <%= image_tag "cat.png" %>
+  <% end %>
   <% if current_user %>
     <span>You're logged as <%= current_user.username %></span>
     <%= link_to "Log out", destroy_user_session_path, method: :delete %>
