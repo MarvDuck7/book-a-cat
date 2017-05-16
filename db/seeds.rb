@@ -15,7 +15,7 @@ CATS_PICTURES = %w(cat_1_lcdl8w cat_2_euuf34 cat_3_yeioxl cat_4_nfxdhe cat_5_ezd
                    cat_36_dmqmml cat_37_tbr534 cat_38_t6hpcu cat_39_hw2wlx cat_40_waqeux
                   )
 
-40.times do
+CATS_PICTURES.each do |cat_picture|
   cat = Cat.new(
     name: Faker::Cat.name,
     description: Faker::Cat.breed,
@@ -23,5 +23,6 @@ CATS_PICTURES = %w(cat_1_lcdl8w cat_2_euuf34 cat_3_yeioxl cat_4_nfxdhe cat_5_ezd
     price: rand(10..20)
   )
   cat.save
+  cat.photo = cat_picture
   print "#{cat.name} added to the database..."
 end
