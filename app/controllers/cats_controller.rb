@@ -5,9 +5,13 @@ class CatsController < ApplicationController
   def index
     cats = Cat.where("address ILIKE '%#{params[:address]}%'")
     @cats = cats.select { |cat| available_for?(cat, params[:date]) }
+    @date = session[:date] = params[:date]
   end
 
-  def show; end
+  def show
+    @bookings = Booking.new
+
+  end
 
   def available_for?(cat, date)
     available = true

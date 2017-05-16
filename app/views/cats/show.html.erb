@@ -2,3 +2,17 @@
   <h1>cats#show</h1>
   <%= @cat.name %>
 </div>
+
+
+
+<%= simple_form_for [@cat, @bookings] do |f| %>
+  <% if @cat.errors.any? %>
+    <ul>
+    <% @cat.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  <% end %>
+  
+  <%= f.submit "book", class: "btn btn-primary"%>
+<% end %>
