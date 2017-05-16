@@ -1,5 +1,4 @@
 class BookingsController < ApplicationController
-  before_action :set_bookings, only: [:show, :destroy]
   before_action :authenticate_user!, only: [:create]
 
   def index
@@ -9,11 +8,14 @@ class BookingsController < ApplicationController
   end
 
   def create
-    cat = Cat.find(params["cat_id"])
-    Booking.create(user_id: current_user.id, cat_id: cat.id)
-    byebug
+    @cat = Cat.find(params["cat_id"]) #ask teacher
+    @book = Booking.create(user_id: current_user.id, cat_id: @cat.id, book_date: session[:date])
+    if @book.save
+      redirect_to cat_path(@cat)
+    else
+      redirect_to cat_path(@cat)
+    end
   end
-  # cat.book_date = session[:date]
 
   def destroy
   end
@@ -23,13 +25,7 @@ class BookingsController < ApplicationController
 
   private
 
-  def bookings_params
+  def booking_params
+    params.require(:booking).permit(:cat_id,:user_id,:book_date)
   end
-
-  def set_bookings
-    #optimized query
-    # @bookings = Cocktail.includes(doses: :ingredient).find(params[:id])
-
-  end
-
 end
