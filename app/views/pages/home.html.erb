@@ -1,9 +1,9 @@
-<div class="container">
-  <h1>pages#home</h1>
-  <p>Find a cat by city</p>
-  <%= form_tag(cats_path, :method => "get") do %>
-    <%= text_field_tag :address, params[:address], placeholder: "City" %>
-    <%= date_field_tag :date, params[:date] %>
-    <%= submit_tag "Search", :name => nil %>
-  <% end %>
+<div class="banner">
+    <h1 class="banner-title">Rent a cat</h1>
+    <p class="banner-subtitle">Need a friend for a day or for your weekend? Find a cat near you</p>
+    <%= form_tag(cats_path, :method => "get") do %>
+    <%= text_field_tag :address, params[:address], placeholder: "Your city", class: "form-control" %>
+    <%= date_field_tag :date, params[:date], class: "form-control" %>
+    <%= submit_tag "Search", :name => nil, class: "btn btn-primary btn-block" %>
+    <% end %>
 </div>
