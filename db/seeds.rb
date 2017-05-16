@@ -61,6 +61,6 @@ print "About to add users..."
     booking.cat = Cat.all.order("RANDOM()").first
     booking.user = user
     booking.save
-    print "Booking added between #{booking.user.username} and #{booking.cat.name}"
+    print "Booking added between #{booking.user.username} and #{booking.cat.name}..."
   end
 end
