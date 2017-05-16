@@ -1,2 +1,9 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+  <h1>pages#home</h1>
+  <p>Find a cat by city</p>
+  <%= form_tag(cats_path, :method => "get") do %>
+    <%= text_field_tag :address, params[:address], placeholder: "City" %>
+    <%= date_field_tag :date, params[:date] %>
+    <%= submit_tag "Search", :name => nil %>
+  <% end %>
+</div>

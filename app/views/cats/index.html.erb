@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>cats#index</h1>
+  <% @cats.each do |cat| %>
+  <%= link_to cat.name, cat_path(cat) %>
+  <%= cat.description %>
+  <%= cat.price %>
+  <hr>
+  <% end %>
+</div>
