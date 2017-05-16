@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <h1>cats#index</h1>
   <% @cats.each do |cat| %>
   <%= link_to cat.name, cat_path(cat) %>
@@ -6,4 +6,15 @@
   <%= cat.price %>
   <hr>
   <% end %>
+</div> -->
+
+<div class="container">
+  <h5>Cats at <%= params[:address] %> available on <%= @date %></h5>
+  <div class="row">
+    <% @cats.each do |cat| %>
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="small-img">
+      </div>
+    <% end %>
+  </div>
 </div>
