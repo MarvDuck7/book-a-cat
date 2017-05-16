@@ -5,7 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :cats, through: :bookings
-
-  validates :address, presence: true
   validates :username, presence: true
 end
