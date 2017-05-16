@@ -1,6 +1,8 @@
 class Cat < ApplicationRecord
   has_many :bookings, dependent: :destroy
 
+  has_attachment :photo
+
   validates :name, length: {maximum: 50}, presence: true
 
   validates :description, presence: true
