@@ -9,7 +9,7 @@ class BookingsController < ApplicationController
 
   def create
     @cat = Cat.find(params["cat_id"]) #ask teacher
-    @book = Booking.create(user_id: current_user.id, cat_id: @cat.id, book_date: session[:date])
+    @book = Booking.new(user_id: current_user.id, cat_id: @cat.id, book_date: session[:date])
     if @book.save
       redirect_to cat_path(@cat)
     else
