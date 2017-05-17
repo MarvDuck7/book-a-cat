@@ -16,7 +16,10 @@ class CatsController < ApplicationController
     available = true
     if cat.bookings.any?
       cat.bookings.each do |booking|
-        available = false if booking.book_date == date
+        if booking.book_date == date
+          available = false
+          break
+        end
       end
     end
     available
