@@ -2,9 +2,8 @@ class CatsController < ApplicationController
   before_action :set_cat, only: [:show]
 
   def index
-    cats = Cat.where("address ILIKE '%#{params[:cat][:address]}%'")
-    @cats = cats.select { |cat| available_for?(cat, params[:cat][:date]) }
-    @date = session[:date] = params[:cat][:date]
+    @cats = Cat.near(params[:cat][:address], 20)
+               .select { |cat| available_for?(cat, params[:cat][:date]) }
   end
 
   def show
@@ -15,7 +14,10 @@ class CatsController < ApplicationController
     available = true
     if cat.bookings.any?
       cat.bookings.each do |booking|
-        available = false if booking.book_date == date
+        if booking.book_date == date
+          available = false
+          break
+        end
       end
     end
     available

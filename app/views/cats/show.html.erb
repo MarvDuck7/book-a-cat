@@ -17,4 +17,23 @@
       <%= link_to "Book", cat_bookings_path(@cat), method: :post, class: "bottom-space btn btn-primary" %>
     </div>
   </div>
+  <% if @cat.bookings.any? %>
+    <% @cat.bookings.each do |booking| %>
+      <% if booking.review_content %>
+        <div class="row">
+          <div class="col-md-12">
+            <blockquote>
+              <p><%= booking.review_content %></p>
+              <h5><%= booking.user.username %></h5>
+              <ul class="list-inline">
+                <% booking.review_rating.times do %>
+                <li><%= image_tag 'cat-footprint.png' %></li>
+                <% end %>
+              </ul>
+            </blockquote>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
 </div>
