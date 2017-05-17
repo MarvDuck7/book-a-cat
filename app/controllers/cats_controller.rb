@@ -1,11 +1,10 @@
-# CatsController
 class CatsController < ApplicationController
   before_action :set_cat, only: [:show]
 
   def index
-    cats = Cat.where("address ILIKE '%#{params[:address]}%'")
-    @cats = cats.select { |cat| available_for?(cat, params[:date]) }
-    @date = session[:date] = params[:date]
+    cats = Cat.where("address ILIKE '%#{params[:cat][:address]}%'")
+    @cats = cats.select { |cat| available_for?(cat, params[:cat][:date]) }
+    @date = session[:date] = params[:cat][:date]
   end
 
   def show
