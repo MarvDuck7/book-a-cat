@@ -14,7 +14,9 @@
       <p><%= @cat.price %> € / day</p>
       <p>Available on Mondays and Fridays</p>
       <hr>
-      <%= link_to "Send a booking request", cat_bookings_path(@cat), method: :post, class: "btn btn-primary btn-lg bottom-space" %>
+      <%= simple_form_for @cat, url: user_bookings_path(current_user), method: :post do |f| %>
+        <%= f.submit "Book", class: "btn btn-primary btn-lg bottom-space" %>
+      <% end %>
     </div>
   </div>
 </div>
