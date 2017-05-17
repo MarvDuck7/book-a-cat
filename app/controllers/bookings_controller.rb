@@ -1,26 +1,25 @@
+# BookingsController
 class BookingsController < ApplicationController
-  before_action :authenticate_user!, only: [:create]
+  before_action :authenticate_user!, only: %i(create index)
 
   def index
+    @bookings = current_user.bookings
   end
 
   def new
+    @booking = Booking.new
   end
 
   def create
-    @cat = Cat.find(params["cat_id"]) #ask teacher
-    @book = Booking.new(user_id: current_user.id, cat_id: params["cat_id"], book_date: session[:date])
+    @book = Booking.new(
+      user_id: current_user.id,
+      cat_id: params[:cat_id],
+      book_date: session[:date]
+    )
     if @book.save
-      redirect_to cat_path(@cat)
+      redirect_to bookings_path
     else
-      redirect_to cat_path(@cat)
+      redirect_to @cat
     end
   end
-
-  def destroy
-  end
-
-  def show
-  end
-
 end

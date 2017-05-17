@@ -1,18 +1,20 @@
-<div class="container">
-  <h1>cats#show</h1>
-  <%= @cat.name %>
+<div class="show-banner bottom-space" style="background-image: linear-gradient(90deg, rgba(0,0,0,1), rgba(0,0,0,0.2), rgba(0,0,0,1)), url('<%= cl_image_path @cat.photo.path %>');">
 </div>
 
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-6 text-center">
+      <%= cl_image_tag @cat.photo.path, width: 800, aspect_ratio: "16:9", crop: :fill, class: "small-img" %>
+    </div>
 
-
-<%= simple_form_for [@cat, @bookings] do |f| %>
-  <% if @cat.errors.any? %>
-    <ul>
-    <% @cat.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
-  <% end %>
-  
-  <%= f.submit "book", class: "btn btn-primary"%>
-<% end %>
+    <div class="col-sm-12 col-md-6 text-center">
+      <h1><%= @cat.name %></h1>
+      <p><%= @cat.description %></p>
+      <p><%= @cat.address %></p>
+      <p><%= @cat.price %> € / day</p>
+      <p>Available on Mondays and Fridays</p>
+      <hr>
+      <%= link_to "Book", cat_bookings_path(@cat), method: :post, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>

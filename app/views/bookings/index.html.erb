@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>bookings#index</h1>
+  <ul>
+    <% @bookings.each do |booking| %>
+    <li>
+      <%= booking.user.username %> has booked <strong><%= booking.cat.name %></strong> for <%= booking.book_date %>
+    </li>
+    <% end %>
+  </ul>
+</div>

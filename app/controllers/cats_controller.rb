@@ -10,7 +10,6 @@ class CatsController < ApplicationController
 
   def show
     @bookings = Booking.new
-
   end
 
   def available_for?(cat, date)
