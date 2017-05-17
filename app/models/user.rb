@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :bookings
   has_many :cats, through: :bookings
   validates :username, presence: true
-  
+
   devise :omniauthable, omniauth_providers: [:facebook]
 
   def self.find_for_facebook_oauth(auth)
@@ -25,6 +25,10 @@ class User < ApplicationRecord
     else
       user = User.new(user_params)
       user.password = Devise.friendly_token[0,20]  # Fake password for validation
+      #if no username provided add a username
+      if user.username.nil?
+        user.username ="fakeUsername"
+      end
       user.save
     end
 
