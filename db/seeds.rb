@@ -39,7 +39,7 @@ CATS_PICTURES_URLS.each do |cat_picture_url|
     price: rand(10..20)
   )
   cat.save
-  url = "http://res.cloudinary.com/zank94/image/upload/#{cat_picture_url}"
+  url = "http://res.cloudinary.com/zank94/image/upload/c_scale,w_1920/#{cat_picture_url}"
   cat.photo_url = url
   print "#{cat.name} added to the database..."
 end
