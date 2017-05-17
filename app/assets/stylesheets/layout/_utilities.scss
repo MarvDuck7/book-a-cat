@@ -9,6 +9,9 @@
   padding-top: 5em;
   padding-bottom: 5em;
 }
+.sm-padded {
+  padding-top: 2em;
+}
 
 // Backgrounds
 .bg-black {
@@ -26,4 +29,8 @@
 
 .bottom-space {
   margin-bottom: 40px;
+}
+
+.hidden {
+  visibility: hidden;
 }

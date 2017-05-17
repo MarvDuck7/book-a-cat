@@ -1,0 +1,17 @@
+<div class="container sm-padded">
+  <%= simple_form_for :cat, url: cats_path, method: :get do |f| %>
+    <div class="form-group row">
+      <div class="col-xs-12 col-sm-4">
+        <%= f.input :address, placeholder: "Your city", label_html: { class: "hidden" } %>
+      </div>
+
+      <div class="col-xs-12 col-sm-4">
+        <%= f.input :date, as: :string, input_html: { class: "datepicker placeholder-padding" }, label_html: { class: "hidden" }, placeholder: "Pick a date" %>
+      </div>
+
+      <div class="col-xs-12 col-sm-4">
+        <%= f.button :submit, "Find another cat", class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>
