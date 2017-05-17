@@ -1,16 +1,15 @@
 require "faker"
 
-puts "Destroying current cats database..."
-
-Cat.destroy_all
-
-puts "Destroying current users database..."
-
-User.destroy_all
 
 puts "Destroying current bookings database..."
-
 Booking.destroy_all
+puts "Destroying current cats database..."
+Cat.destroy_all
+puts "Destroying current users database..."
+User.destroy_all
+
+
+
 
 CITIES = %w(Bordeaux Lyon Paris Marseille)
 CATS_PICTURES_URLS = %w(v1494928644/cat_1_lcdl8w.jpg v1494928644/cat_2_euuf34.jpg v1494928643/cat_3_yeioxl.jpg
