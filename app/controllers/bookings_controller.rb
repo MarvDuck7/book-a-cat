@@ -1,6 +1,6 @@
 # BookingsController
 class BookingsController < ApplicationController
-  before_action :authenticate_user!, only: [:create]
+  before_action :authenticate_user!, only: %i(create index)
 
   def index
     @bookings = current_user.bookings
@@ -11,15 +11,13 @@ class BookingsController < ApplicationController
   end
 
   def create
-    cat = @cat
-    raise
     @book = Booking.new(
       user_id: current_user.id,
       cat_id: params[:cat_id],
       book_date: session[:date]
     )
     if @book.save
-      redirect_to user_bookings_path
+      redirect_to bookings_path
     else
       redirect_to @cat
     end
