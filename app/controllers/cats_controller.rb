@@ -4,6 +4,7 @@ class CatsController < ApplicationController
   def index
     @cats = Cat.near(params[:cat][:address], 20)
                .select { |cat| available_for?(cat, params[:cat][:date]) }
+    session[:date] = params[:cat][:date]
   end
 
   def show
