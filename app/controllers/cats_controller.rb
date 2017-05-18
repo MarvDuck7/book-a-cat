@@ -11,6 +11,10 @@ class CatsController < ApplicationController
     @bookings = Booking.new
   end
 
+  def new
+    @cat = Cat.new
+  end
+
   def available_for?(cat, date)
     available = true
     if cat.bookings.any?
