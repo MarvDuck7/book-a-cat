@@ -1,69 +1,34 @@
 <div class="container">
   <% @cats.each do |cat| %>
-    <% cat.bookings.where("status = ?", "Pending").each do |booking| %>
-      <div class="product">
-        <% if cat.photo? %>
-          <%= cl_image_tag cat.photo.path, width: 200, aspect_ratio: "16:9", crop: :fill, class: "product-image hidden-xs" %>
-        <% end %>
-        <div class='product-body'>
-          <h3><%= link_to cat.name, cat_path(cat) %></h3>
-          <p>Next bookings:
-            <% cat.bookings.each do |booking| %>
-              <%= booking.book_date %>
-            <% end %>
-          </p>
-        </div>
-        <ul class="list-inline">
-          <% rand(1..5).times do %>
-            <li class="rating-items"><a href=""><%= image_tag 'cat-footprint.png' %></a></li>
-          <% end %>
-        </ul>
-        <%= link_to "Supprimer #{cat.name}", cat_path(cat), method: :delete, class: "btn btn-primary" %>
+    <div class="product">
+      <% if cat.photo? %>
+        <%= cl_image_tag cat.photo.path, width: 200, aspect_ratio: "16:9", crop: :fill, class: "product-image hidden-xs" %>
+      <% end %>
+      <div class='product-body'>
+        <h3><%= link_to cat.name, cat_path(cat) %></h3>
+        <p>Average rating <i class="fa fa-star" aria-hidden="true"></i>
+                          <i class="fa fa-star" aria-hidden="true"></i>
+                          <i class="fa fa-star" aria-hidden="true"></i>
+                          <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                          <i class="fa fa-star-o" aria-hidden="true"></i>
+        </p>
+        <p>Next booking: <%= cat.bookings.first.book_date %></p>
+        <p class="pending"><%= cat.bookings.where("status = ?", "Pending").count %> pending booking request(s)</p>
       </div>
-    <% end %>
 
-    <% cat.bookings.where("status = ?", "Accepted").each do |booking| %>
-      <div class="product">
-        <% if cat.photo? %>
-          <%= cl_image_tag cat.photo.path, width: 200, aspect_ratio: "16:9", crop: :fill, class: "product-image hidden-xs" %>
-        <% end %>
-        <div class='product-body'>
-          <h3><%= link_to cat.name, cat_path(cat) %></h3>
-          <p>Next bookings:
-            <% cat.bookings.each do |booking| %>
-              <%= booking.book_date %>
-            <% end %>
-          </p>
-        </div>
-        <ul class="list-inline">
-          <% rand(1..5).times do %>
-            <li class="rating-items"><a href=""><%= image_tag 'cat-footprint.png' %></a></li>
+      <div class="product-links">
+        <p>
+          <%= link_to root_path do %>
+            <i class="fa fa-pencil" aria-hidden="true"></i> Edit Profile
           <% end %>
-        </ul>
-        <%= link_to "Supprimer #{cat.name}", cat_path(cat), method: :delete, class: "btn btn-primary" %>
-      </div>
-    <% end %>
+        </p>
 
-    <% cat.bookings.where("status = ?", "Canceled").each do |booking| %>
-      <div class="product">
-        <% if cat.photo? %>
-          <%= cl_image_tag cat.photo.path, width: 200, aspect_ratio: "16:9", crop: :fill, class: "product-image hidden-xs" %>
-        <% end %>
-        <div class='product-body'>
-          <h3><%= link_to cat.name, cat_path(cat) %></h3>
-          <p>Next bookings:
-            <% cat.bookings.each do |booking| %>
-              <%= booking.book_date %>
-            <% end %>
-          </p>
-        </div>
-        <ul class="list-inline">
-          <% rand(1..5).times do %>
-            <li class="rating-items"><a href=""><%= image_tag 'cat-footprint.png' %></a></li>
+        <p>
+          <%= link_to root_path do %>
+            <i class="fa fa-calendar-check-o" aria-hidden="true"></i> Manage bookings
           <% end %>
-        </ul>
-        <%= link_to "Supprimer #{cat.name}", cat_path(cat), method: :delete, class: "btn btn-primary" %>
+        </p>
       </div>
-    <% end %>
+    </div>
   <% end %>
 </div>
