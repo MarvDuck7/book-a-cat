@@ -17,6 +17,7 @@
           <li class="rating-items"><a href=""><%= image_tag 'cat-footprint.png' %></a></li>
         <% end %>
       </ul>
+      <%= link_to "Supprimer #{cat.name}", cat_path(cat), method: :delete, class: "btn btn-primary" %>
     </div>
   <% end %>
 </div>
