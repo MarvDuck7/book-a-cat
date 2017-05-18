@@ -27,7 +27,7 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0,20]  # Fake password for validation
       #if no username provided add a username
       if user.username.empty?
-        user.username = "fakeUsername"
+        user.username = "#{user.email}"
       end
       user.save
     end
