@@ -1,0 +1,22 @@
+<div class="container">
+  <% @cats.each do |cat| %>
+    <div class="product">
+      <% if cat.photo? %>
+        <%= cl_image_tag cat.photo.path, width: 200, aspect_ratio: "16:9", crop: :fill, class: "product-image hidden-xs" %>
+      <% end %>
+      <div class='product-body'>
+        <h3><%= link_to cat.name, cat_path(cat) %></h3>
+        <p>Next bookings:
+          <% cat.bookings.each do |booking| %>
+            <%= booking.book_date %>
+          <% end %>
+        </p>
+      </div>
+      <ul class="list-inline">
+        <% rand(1..5).times do %>
+          <li class="rating-items"><a href=""><%= image_tag 'cat-footprint.png' %></a></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
