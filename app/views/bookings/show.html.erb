@@ -1,0 +1,27 @@
+<h1>Bookings#Show</h1>
+
+<div class="container">
+    <div class="product">
+      <% if @booking.cat.photo? %>
+        <%= cl_image_tag @booking.cat.photo.path, width: 200, aspect_ratio: "16:9", crop: :fill, class: "product-image hidden-xs" %>
+      <% end %>
+      <div class='product-body'>
+        <h3><%= link_to @booking.cat.name, cat_path(@booking.cat) %></h3>
+        <p>Booked for: <%= @booking.book_date %></p>
+        <p>Booked on: <%= @booking.created_at %></p>
+      </div>
+      <ul class="list-inline">
+        <% rand(1..5).times do %>
+          <li class="rating-items"><a href=""><%= image_tag 'cat-footprint.png' %></a></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <%= simple_form_for @booking, method: :patch  do |f| %>
+      <%= f.input :review_content, required: true %>
+      <%= f.input :review_rating, collection: 1..5, as: :radio_buttons, required: true %>
+      <%= f.button :submit, class: "btn btn-primary btn-lg" %>
+    <% end %>
+
+
+</div>

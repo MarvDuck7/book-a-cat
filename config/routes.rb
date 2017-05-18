@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :cats, only: %i(index show new create), shallow: true do
-    resources :bookings, only: %i(create)
+    resources :bookings, only: %i(create show update)
     collection do
       get 'mycats', to: 'cats#mycats'
     end
