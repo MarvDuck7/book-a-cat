@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :cats, only: %i(index show new create), shallow: true do
     resources :bookings, only: %i(create)
+    collection do
+      get 'mycats', to: 'cats#mycats'
+    end
   end
   resources :bookings, only: %i(index show)
   devise_for :users, controllers: {

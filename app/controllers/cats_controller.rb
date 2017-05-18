@@ -9,6 +9,10 @@ class CatsController < ApplicationController
 
   def show; end
 
+  def mycats
+    @cats = current_user.cats
+  end
+
   def new
     @cat = current_user.cats.new
   end
