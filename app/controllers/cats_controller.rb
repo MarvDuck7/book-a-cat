@@ -2,9 +2,10 @@ class CatsController < ApplicationController
   before_action :set_cat, only: %i(show destroy)
 
   def index
-    @cats = Cat.near(params[:cat][:address], 20)
-               .select { |cat| available_for?(cat, params[:cat][:date]) }
     session[:date] = params[:cat][:date]
+    request_date = Date.parse(session[:date])
+    @cats = Cat.near(params[:cat][:address], 20)
+               .select { |cat| available_for?(cat, request_date) }
   end
 
   def show; end
