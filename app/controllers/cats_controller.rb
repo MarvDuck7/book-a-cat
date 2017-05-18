@@ -7,9 +7,7 @@ class CatsController < ApplicationController
     session[:date] = params[:cat][:date]
   end
 
-  def show
-    @bookings = Booking.new
-  end
+  def show; end
 
   def new
     @cat = current_user.cats.new
@@ -41,11 +39,6 @@ class CatsController < ApplicationController
 
   def set_cat
     @cat = Cat.find(params[:id])
-    if @cat.save
-      redirect_to @cat
-    else
-      render :new
-    end
   end
 
   def cat_params
