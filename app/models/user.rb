@@ -5,9 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :bookings
-  has_many :cats, through: :bookings
+  has_many :cats
   validates :username, presence: true
-  
+
   devise :omniauthable, omniauth_providers: [:facebook]
 
   def self.find_for_facebook_oauth(auth)
@@ -28,6 +28,10 @@ class User < ApplicationRecord
       user.save
     end
 
-    return user
+    user
+  end
+
+  def owner?
+    !cats.empty?
   end
 end
