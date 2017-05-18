@@ -6,11 +6,3 @@
 //= require attachinary
 //= require bootstrap-datepicker
 //= require_tree .
-
-$(function() {
-    $('input.datepicker').data({behaviour: "datepicker"}).datepicker();
-});
-
-$('.datepicker').datepicker({
-    format: 'yyyy/mm/dd'
-});
