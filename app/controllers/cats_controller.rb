@@ -11,6 +11,19 @@ class CatsController < ApplicationController
     @bookings = Booking.new
   end
 
+  def new
+    @cat = current_user.cats.new
+  end
+
+  def create
+    @cat = current_user.cats.new(cat_params)
+    if @cat.save
+      redirect_to @cat
+    else
+      render :new
+    end
+  end
+
   def available_for?(cat, date)
     available = true
     if cat.bookings.any?
@@ -28,5 +41,14 @@ class CatsController < ApplicationController
 
   def set_cat
     @cat = Cat.find(params[:id])
+    if @cat.save
+      redirect_to @cat
+    else
+      render :new
+    end
+  end
+
+  def cat_params
+    params.require(:cat).permit(:name, :description, :photo, :address, :price)
   end
 end
