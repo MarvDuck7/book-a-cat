@@ -1,5 +1,5 @@
 class CatsController < ApplicationController
-  before_action :set_cat, only: [:show]
+  before_action :set_cat, only: [:show, :destroy]
 
   def index
     @cats = Cat.near(params[:cat][:address], 20)
@@ -37,6 +37,11 @@ class CatsController < ApplicationController
       end
     end
     available
+  end
+
+  def destroy
+    @cat.destroy
+    redirect_to mycats_cats_path
   end
 
   private
