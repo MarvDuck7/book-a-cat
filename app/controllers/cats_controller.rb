@@ -7,8 +7,19 @@ class CatsController < ApplicationController
     session[:date] = params[:cat][:date]
   end
 
-  def show
-    @bookings = Booking.new
+  def show; end
+
+  def new
+    @cat = current_user.cats.new
+  end
+
+  def create
+    @cat = current_user.cats.new(cat_params)
+    if @cat.save
+      redirect_to @cat
+    else
+      render :new
+    end
   end
 
   def available_for?(cat, date)
@@ -28,5 +39,9 @@ class CatsController < ApplicationController
 
   def set_cat
     @cat = Cat.find(params[:id])
+  end
+
+  def cat_params
+    params.require(:cat).permit(:name, :description, :photo, :address, :price)
   end
 end
