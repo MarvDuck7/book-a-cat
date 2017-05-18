@@ -11,10 +11,12 @@ class BookingsController < ApplicationController
   end
 
   def create
+    date = Date.parse(session[:date])
+    @cat = Cat.find(params[:cat_id])
     @book = Booking.new(
       user_id: current_user.id,
       cat_id: params[:cat_id],
-      book_date: session[:date]
+      book_date: date
     )
     if @book.save
       redirect_to bookings_path
