@@ -10,4 +10,8 @@ class Cat < ApplicationRecord
   validates :price, numericality: { only_integer: true }, presence: true
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
+
+  def average_rating
+    bookings.average(:review_rating).to_i
+  end
 end
