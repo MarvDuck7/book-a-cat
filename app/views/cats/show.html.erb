@@ -13,7 +13,7 @@
       <p><%= @cat.address %></p>
       <p><%= @cat.price %> € / day</p>
       <hr>
-      <%= link_to "Book", cat_bookings_path(@cat), method: :post, class: "bottom-space btn btn-primary" %>
+      <%= link_to "Send a booking request", cat_bookings_path(@cat), method: :post, class: "bottom-space btn btn-primary" %>
     </div>
   </div>
   <% if @cat.bookings.any? %>
