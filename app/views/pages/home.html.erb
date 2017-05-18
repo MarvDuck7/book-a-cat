@@ -3,8 +3,26 @@
   <p class="banner-subtitle">Need a friend for a day or for your weekend? Find a cat near you</p>
   <%= render "shared/main_search_form" %>
   <% if user_signed_in? %>
-    <p class="welcome-msg sm-padded"><i class="fa fa-user-circle" aria-hidden="true"></i> Welcome <%= current_user.username %></p>
+    <% if current_user.owner? %>
+      <%= link_to mycats_cats_path, class: "welcome-msg sm-padded" do %>
+        <i class="fa fa-user-circle" aria-hidden="true"></i> Welcome <%= current_user.username %>
+      <% end %>
+
+    <% else %>
+
+      <%= link_to bookings_path, class: "welcome-msg sm-padded" do %>
+        <i class="fa fa-user-circle" aria-hidden="true"></i> Welcome <%= current_user.username %>
+      <% end %>
+    <% end %>
+
+    <% if @number_of_pending_requests != 0 %>
+      <p class="pending-requests">You have <%= @number_of_pending_requests %> pending request(s) <i class="fa fa-flag" aria-hidden="true"></i></p>
+    <% end %>
+
+    <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "color-white" %>
+
   <% else %>
+
     <%= link_to new_user_session_path, class: "login sm-padded" do %>
       <i class="fa fa-arrow-right" aria-hidden="true"></i> Login / Sign up
     <% end %>

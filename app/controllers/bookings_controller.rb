@@ -24,4 +24,12 @@ class BookingsController < ApplicationController
       redirect_to @cat
     end
   end
+
+  def update
+    if @booking.update(booking_params)
+      redirect_to bookings_path
+    else
+      render 'show'
+    end
+  end
 end

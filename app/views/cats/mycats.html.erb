@@ -1,5 +1,8 @@
 <div class="container">
   <% @cats.each do |cat| %>
+    <% cat.bookings.where("status = ?", "Pending").each do |booking| %>
+      <p>You have a new booking request from <%= booking.user.username %> for you cat <%= booking.cat.name %></p>
+    <% end %>
     <div class="product">
       <% if cat.photo? %>
         <%= cl_image_tag cat.photo.path, width: 200, aspect_ratio: "16:9", crop: :fill, class: "product-image hidden-xs" %>
