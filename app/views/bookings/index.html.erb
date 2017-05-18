@@ -17,11 +17,11 @@
       <ul class="list-inline">
         <% if booking.review_rating %>
           <% booking.review_rating.times do %>
-            <li class="rating-items"><a href=""><%= image_tag 'cat-footprint.png' %></a></li>
+            <li class="rating-items"><a href=""><%= image_tag 'footprints-cat-32.png' %></a></li>
           <% end %>
         <% else %>
           <% rand(1..5).times do %>
-            <li class="rating-items"><a href=""><%= image_tag 'cat-footprint.png' %></a></li>
+            <li class="rating-items"><a href=""><%= image_tag 'footprints-cat-32.png' %></a></li>
           <% end %>
         <% end %>
       </ul>
