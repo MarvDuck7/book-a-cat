@@ -8,10 +8,21 @@
         <h3><%= link_to booking.cat.name, cat_path(booking.cat) %></h3>
         <p>Booked for: <%= booking.book_date %></p>
         <p>Booked on: <%= booking.created_at %></p>
+        <% if !booking.review_rating || !booking.review_content   %>
+          <p><%= link_to 'Add a review for this cat', booking_path(booking) %> </p>
+        <% end %>
+
+
       </div>
       <ul class="list-inline">
-        <% rand(1..5).times do %>
-          <li class="rating-items"><a href=""><%= image_tag 'cat-footprint.png' %></a></li>
+        <% if booking.review_rating %>
+          <% booking.review_rating.times do %>
+            <li class="rating-items"><a href=""><%= image_tag 'cat-footprint.png' %></a></li>
+          <% end %>
+        <% else %>
+          <% rand(1..5).times do %>
+            <li class="rating-items"><a href=""><%= image_tag 'cat-footprint.png' %></a></li>
+          <% end %>
         <% end %>
       </ul>
     </div>
