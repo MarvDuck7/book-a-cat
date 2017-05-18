@@ -1,5 +1,12 @@
 <div class="banner">
-    <h1 class="banner-title">Rent a cat</h1>
-    <p class="banner-subtitle">Need a friend for a day or for your weekend? Find a cat near you</p>
-    <%= render "shared/main_search_form" %>
+  <h1 class="banner-title">Rent a cat</h1>
+  <p class="banner-subtitle">Need a friend for a day or for your weekend? Find a cat near you</p>
+  <%= render "shared/main_search_form" %>
+  <% if user_signed_in? %>
+    <p class="welcome-msg sm-padded"><i class="fa fa-user-circle" aria-hidden="true"></i> Welcome <%= current_user.username %></p>
+  <% else %>
+    <%= link_to new_user_session_path, class: "login sm-padded" do %>
+      <i class="fa fa-arrow-right" aria-hidden="true"></i> Login / Sign up
+    <% end %>
+  <% end %>
 </div>
