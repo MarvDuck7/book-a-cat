@@ -16,9 +16,23 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
+  def mycatbookings
+    @cat = Cat.find(params[:cat_id])
+    @bookings = @cat.bookings
+  end
+
   def update
     if @booking.update(booking_params)
       redirect_to bookings_path
+    else
+      render 'show'
+    end
+  end
+
+  def updatestatus
+    @booking = Booking.find(params[:booking_id])
+    if @booking.update(status: params[:status])
+      redirect_to mycatbookings_cat_bookings_path(@booking.cat)
     else
       render 'show'
     end
@@ -40,7 +54,7 @@ class BookingsController < ApplicationController
   end
 
   private
-  
+
   def set_booking
     @booking = Booking.find(params[:id])
   end

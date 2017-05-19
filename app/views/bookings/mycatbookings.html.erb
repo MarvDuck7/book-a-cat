@@ -1,0 +1,19 @@
+<h1><%= @cat.name %> bookings</h1>
+<% @bookings.where("status = ?", "Pending").each do |booking| %>
+  <p class="pending">Pending request from <%= booking.user.username %> for the <%= booking.book_date %></p>
+  <p>Booking request sent on <%= booking.created_at %></p>
+  <%= link_to "Accept request", booking_updatestatus_path(booking, status: "Accepted"), method: :patch %>
+  <%= link_to "Decline request", booking_updatestatus_path(booking, status: "Canceled"), method: :patch %>
+<% end %>
+<hr>
+<% @bookings.where("status = ?", "Accepted").each do |booking| %>
+  <p class="accepted">Booking request from <%= booking.user.username %> for the <%= booking.book_date %></p>
+  <p>Booking request sent on <%= booking.created_at %></p>
+  <p>Booking accepted on <%= booking.updated_at %></p>
+<% end %>
+<hr>
+<% @bookings.where("status = ?", "Canceled").each do |booking| %>
+  <p class="canceled">Booking request from <%= booking.user.username %> for the <%= booking.book_date %></p>
+  <p>Booking request sent on <%= booking.created_at %></p>
+<% end %>
+
