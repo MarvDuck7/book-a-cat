@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="text-center">
+    <h1>Manage bookings for <%= @cat.name %></h1>
+    <% if @cat.photo? %>
+      <%= cl_image_tag @cat.photo.path, width: 200, radius: "max", crop: :fill, class: "product-image hidden-xs sm-padded bottom-space" %>
+    <% end %>
+  </div>
+
+  <% @bookings.where("status = ?", "Pending").each do |booking| %>
+    <div class="product">
+      <div class='product-body'>
+        <p class="pending">Pending request from <%= booking.user.username %> for the <%= booking.book_date %></p>
+        <p>Booking request sent on <%= booking.created_at %></p>
+      </div>
+
+      <div class="product-links">
+        <p>
+          <%= link_to booking_updatestatus_path(booking, status: "Accepted"), method: :patch do %>
+            <i class="fa fa-check" aria-hidden="true"></i> Accept request
+          <% end %>
+        </p>
+
+        <p>
+          <%= link_to booking_updatestatus_path(booking, status: "Canceled"), method: :patch do %>
+            <i class="fa fa-times" aria-hidden="true"></i> Decline request
+          <% end %>
+        </p>
+
+      </div>
+    </div>
+  <% end %>
+  <hr>
+
+  <% @bookings.where("status = ?", "Accepted").each do |booking| %>
+    <div class="product">
+      <div class='product-body'>
+        <p class="accepted">Booking request from <%= booking.user.username %> for the <%= booking.book_date %></p>
+        <p>Booking request sent on <%= booking.created_at %></p>
+        <p>Booking accepted on <%= booking.updated_at %></p>
+      </div>
+    </div>
+  <% end %>
+  <hr>
+
+  <% @bookings.where("status = ?", "Canceled").each do |booking| %>
+    <div class="product">
+      <div class='product-body'>
+        <p class="canceled">Booking request from <%= booking.user.username %> for the <%= booking.book_date %></p>
+        <p>Booking request sent on <%= booking.created_at %></p>
+        <p>Booking canceled on <%= booking.updated_at %></p
+      </div>
+    </div>
+  <% end %>
+</div>
+
+

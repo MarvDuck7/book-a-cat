@@ -1,6 +1,8 @@
 # BookingsController
 class BookingsController < ApplicationController
   before_action :authenticate_user!, only: %i(create index)
+  before_action :set_booking, only: [:update]
+
 
   def index
     @bookings = current_user.bookings
@@ -8,6 +10,32 @@ class BookingsController < ApplicationController
 
   def new
     @booking = Booking.new
+  end
+
+  def show
+    @booking = Booking.find(params[:id])
+  end
+
+  def mycatbookings
+    @cat = Cat.find(params[:cat_id])
+    @bookings = @cat.bookings
+  end
+
+  def update
+    if @booking.update(booking_params)
+      redirect_to bookings_path
+    else
+      render 'show'
+    end
+  end
+
+  def updatestatus
+    @booking = Booking.find(params[:booking_id])
+    if @booking.update(status: params[:status])
+      redirect_to mycatbookings_cat_bookings_path(@booking.cat)
+    else
+      render 'show'
+    end
   end
 
   def create
@@ -23,5 +51,15 @@ class BookingsController < ApplicationController
     else
       redirect_to @cat
     end
+  end
+
+  private
+
+  def set_booking
+    @booking = Booking.find(params[:id])
+  end
+
+  def booking_params
+    params.require(:booking).permit(:id, :review_rating, :review_content)
   end
 end

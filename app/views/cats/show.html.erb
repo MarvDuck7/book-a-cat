@@ -8,14 +8,19 @@
     </div>
 
     <div class="col-sm-12 col-md-6 text-center">
-      <h1><%= @cat.name %></h1>
+      <h1><%= @cat.name.capitalize %></h1>
       <p><%= @cat.description %></p>
       <p><%= @cat.address %></p>
       <p><%= @cat.price %> € / day</p>
       <hr>
-      <%= link_to "Book", cat_bookings_path(@cat), method: :post, class: "bottom-space btn btn-primary" %>
+      <% if @cat.user == current_user %>
+        <%= link_to "Manage #{@cat.name.capitalize}", root_path, method: :post, class: "bottom-space btn btn-primary" %>
+      <% else %>
+        <%= link_to "Send a booking request", cat_bookings_path(@cat), method: :post, class: "bottom-space btn btn-primary" %>
+      <% end %>
     </div>
   </div>
+
   <% if @cat.bookings.any? %>
     <% @cat.bookings.each do |booking| %>
       <% if booking.review_content %>
@@ -26,10 +31,10 @@
               <h5><%= booking.user.username %></h5>
               <ul class="list-inline">
                 <% booking.review_rating.times do %>
-                  <li><%= image_tag 'cat-footprint.png' %></li>
+                  <li><%= image_tag 'footprints-cat-32.png' %></li>
                 <% end %>
                 <% (5 - booking.review_rating).times do %>
-                  <li><%= image_tag 'cat-footprint-grey.png' %></li>
+                  <li><%= image_tag 'footprints-cat-32-gray.png' %></li>
                 <% end %>
               </ul>
             </blockquote>

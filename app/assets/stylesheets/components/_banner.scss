@@ -41,4 +41,19 @@
 .welcome-msg {
   color: white;
   font-weight: bold;
+  &:hover {
+  color: #d2d2d2;
+  }
+}
+
+.color-white {
+  color: white;
+  &:hover {
+  color: #d2d2d2;
+  }
+}
+
+.pending-requests {
+  color: white;
+  opacity: 0.5;
 }
