@@ -13,7 +13,7 @@
                           <i class="fa fa-star-o" aria-hidden="true"></i>
         </p>
         <p>Next booking: <%= cat.bookings.first.book_date %></p>
-        <p class="pending"><%= cat.bookings.where("status = ?", "Pending").count %> pending booking request(s)</p>
+        <p class="pending"><%= pluralize cat.bookings.where("status = ?", "Pending").count, "pending booking request" %></p>
       </div>
 
       <div class="product-links">

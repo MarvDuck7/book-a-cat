@@ -16,7 +16,7 @@
     <% end %>
 
     <% if @number_of_pending_requests != 0 %>
-      <p class="pending-requests">You have <%= @number_of_pending_requests %> pending request(s) <i class="fa fa-flag" aria-hidden="true"></i></p>
+      <p class="pending-requests">You have <%= pluralize @number_of_pending_requests, "pending request" %> <i class="fa fa-flag" aria-hidden="true"></i></p>
     <% end %>
 
     <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "color-white" %>
