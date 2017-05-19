@@ -10,9 +10,10 @@
 $(document).ready(function() {
   $('#search-btn').click(function(e) {
     if ($('#cat_address').val() === '' || $('#cat_date').val() === '') {
-      alert('Please fill the form :(');
+      $('#search-alert').toggleClass('hidden', 1000, "easeOutSine");
       e.preventDefault();
     } else {
+      $('#search-alert').toggleClass('hidden', 1000, "easeOutSine");
       $(this).unbind('click');
     }
   });
