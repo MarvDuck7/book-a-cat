@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="text-center">
+    <h1>Edit <%= @cat.name %>'s profile</h1>
+    <% if @cat.photo? %>
+      <%= cl_image_tag @cat.photo.path, width: 200, radius: 'max', class: "sm-padded bottom-space" %>
+    <% end %>
+  </div>
+  <%= render "shared/create_form" %>
+</div>

@@ -1,5 +1,5 @@
 class CatsController < ApplicationController
-  before_action :set_cat, only: %i(show destroy)
+  before_action :set_cat, only: %i(show destroy edit update)
 
   def index
     session[:date] = params[:cat][:date]
@@ -24,6 +24,18 @@ class CatsController < ApplicationController
       redirect_to @cat
     else
       render :new
+    end
+  end
+
+  def edit
+
+  end
+
+  def update
+    if @cat.update(cat_params)
+      redirect_to @cat
+    else
+      render :edit
     end
   end
 
