@@ -14,7 +14,7 @@
       <p><%= @cat.price %> € / day</p>
       <hr>
       <% if @cat.user == current_user %>
-        <%= link_to "Manage #{@cat.name.capitalize}", root_path, method: :post, class: "bottom-space btn btn-primary" %>
+        <%= link_to "Manage #{@cat.name.capitalize}", edit_cat_path(@cat), class: "bottom-space btn btn-primary" %>
       <% else %>
         <%= link_to "Send a booking request", cat_bookings_path(@cat), method: :post, class: "bottom-space btn btn-primary" %>
       <% end %>

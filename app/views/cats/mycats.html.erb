@@ -5,7 +5,7 @@
         <%= cl_image_tag cat.photo.path, width: 200, aspect_ratio: "16:9", crop: :fill, class: "product-image hidden-xs" %>
       <% end %>
       <div class='product-body'>
-        <h3><%= link_to cat.name, cat_path(cat) %></h3>
+        <h3><%= cat.name %></h3>
         <ul class="list-inline">
           <li>Average rating</li>
           <% unless cat.average_rating.zero? %>
@@ -22,6 +22,12 @@
       </div>
 
       <div class="product-links">
+        <p>
+          <%= link_to cat_path(cat) do %>
+            <i class="fa fa-eye" aria-hidden="true"></i> Show Profile
+          <% end %>
+        </p>
+
         <p>
           <%= link_to edit_cat_path(cat) do %>
             <i class="fa fa-pencil" aria-hidden="true"></i> Edit Profile

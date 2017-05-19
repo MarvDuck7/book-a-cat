@@ -15,9 +15,13 @@
     <% unless controller_name == "pages" %>
       <%= render 'shared/navbar' %>
     <% end %>
-    <div class="sm-bottom-space">
+    <% if controller_name == "pages" %>
       <%= yield %>
-    </div>
+    <% else %>
+      <div class="sm-bottom-space">
+        <%= yield %>
+      </div>
+    <% end %>
     <%= javascript_include_tag 'application' %>
     <%= cloudinary_js_config %>
   </body>

@@ -1,9 +1,11 @@
 <div class="container">
-  <div class="text-center">
-    <h1>Add a review for <%= @booking.cat.name %></h1>
-    <% if @booking.cat.photo? %>
-      <%= cl_image_tag @booking.cat.photo.path, width: 200, radius: 'max', class: "sm-padded bottom-space" %>
-    <% end %>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 text-center bottom-space">
+      <h1>Add a review for <%= @booking.cat.name %></h1>
+      <% if @booking.cat.photo? %>
+        <%= cl_image_tag @booking.cat.photo.path, width: 800, aspect_ratio: "16:9", crop: :fill, class: "small-img" %>
+      <% end %>
+    </div>
   </div>
   <%= render "shared/review_form" %>
 </div>
