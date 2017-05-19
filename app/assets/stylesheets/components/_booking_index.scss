@@ -15,7 +15,7 @@
   }
   p {
   font-weight: lighter;
-  color: #999999;
+  color: $font-gray;
   margin-bottom: 0;
   }
   i {
@@ -34,15 +34,15 @@
 }
 
 .pending {
-  color: #f26d07 !important;
+  color: $orange !important;
 }
 
 .accepted {
-  color: #108e07 !important;
+  color: $green !important;
 }
 
 .canceled {
-  color: #c9290a !important;
+  color: $red !important;
 }
 
 .product-links a {
