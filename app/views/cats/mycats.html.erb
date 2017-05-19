@@ -39,6 +39,12 @@
             <i class="fa fa-calendar-check-o" aria-hidden="true"></i> Manage bookings
           <% end %>
         </p>
+
+        <p>
+          <%= link_to cat_path(cat), method: :delete do %>
+            <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+          <% end %>
+        </p>
       </div>
     </div>
   <% end %>
