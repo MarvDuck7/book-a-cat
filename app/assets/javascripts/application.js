@@ -8,12 +8,13 @@
 //= require_tree .
 
 $(document).ready(function() {
+  $('#search-alert').hide();
   $('#search-btn').click(function(e) {
     if ($('#cat_address').val() === '' || $('#cat_date').val() === '') {
-      $('#search-alert').toggleClass('hidden', 1000, "easeOutSine");
+      $('#search-alert').show(500);
       e.preventDefault();
     } else {
-      $('#search-alert').toggleClass('hidden', 1000, "easeOutSine");
+      $('#search-alert').hide(500);
       $(this).unbind('click');
     }
   });
