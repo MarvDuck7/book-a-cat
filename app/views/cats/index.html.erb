@@ -1,6 +1,6 @@
 <div class="container">
   <%= render "shared/show_search_form" %>
-  <h5 class="bottom-space">Cats at <%= params[:cat][:address].capitalize %> available on <%= params[:cat][:date] %></h5>
+  <h5 class="bottom-space" style="font-size: 20px">Cats at <%= params[:cat][:address].capitalize %> available on <%= params[:cat][:date] %></h5>
   <div class="row">
     <% @cats.each do |cat| %>
       <div class="col-md-4 col-sm-6 col-xs-12 bottom-space">
