@@ -6,12 +6,17 @@
       <% end %>
       <div class='product-body'>
         <h3><%= link_to cat.name, cat_path(cat) %></h3>
-        <p>Average rating <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                          <i class="fa fa-star-o" aria-hidden="true"></i>
-        </p>
+        <ul class="list-inline">
+          <li>Average rating</li>
+          <% unless cat.average_rating.zero? %>
+            <% cat.average_rating.times do %>
+              <li><%= image_tag 'footprints-cat-16.png' %></li>
+            <% end %>
+            <% (5 - cat.average_rating).times do %>
+              <li><%= image_tag 'footprints-cat-16-gray.png' %></li>
+            <% end %>
+          <% end %>
+        </ul>
         <p>Next booking: <%= cat.bookings.first.book_date %></p>
         <p class="pending"><%= pluralize cat.bookings.where("status = ?", "Pending").count, "pending booking request" %></p>
       </div>
