@@ -6,25 +6,42 @@
       <% end %>
       <div class='product-body'>
         <h3><%= link_to booking.cat.name, cat_path(booking.cat) %></h3>
+        <p>Average rating <i class="fa fa-star" aria-hidden="true"></i>
+                          <i class="fa fa-star" aria-hidden="true"></i>
+                          <i class="fa fa-star" aria-hidden="true"></i>
+                          <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                          <i class="fa fa-star-o" aria-hidden="true"></i>
+        </p>
         <p>Booked for: <%= booking.book_date %></p>
         <p>Booked on: <%= booking.created_at %></p>
-        <% if !booking.review_rating || !booking.review_content   %>
-          <p><%= link_to 'Add a review for this cat', booking_path(booking) %> </p>
-        <% end %>
-
-
       </div>
-      <ul class="list-inline">
-        <% if booking.review_rating %>
-          <% booking.review_rating.times do %>
-            <li class="rating-items"><a href=""><%= image_tag 'footprints-cat-32.png' %></a></li>
+
+      <div class="product-links">
+        <p>
+          <%= link_to root_path do %>
+            <i class="fa fa-eye" aria-hidden="true"></i> Booking details
           <% end %>
-        <% else %>
-          <% rand(1..5).times do %>
-            <li class="rating-items"><a href=""><%= image_tag 'footprints-cat-32.png' %></a></li>
-          <% end %>
+        </p>
+
+        <% if !booking.review_rating || !booking.review_content   %>
+          <p>
+            <%= link_to booking_path(booking) do %>
+              <i class="fa fa-pencil" aria-hidden="true"></i> Write a review
+            <% end %>
+          </p>
         <% end %>
-      </ul>
+
+        <% case booking.status %>
+        <% when "Pending" %>
+          <p class="pending"><i class="fa fa-question-circle" aria-hidden="true"></i> <%= booking.status %></p>
+        <% when "Accepted" %>
+          <p class="accepted"><i class="fa fa-check" aria-hidden="true"></i> <%= booking.status %></p>
+        <% when "Canceled" %>
+          <p class="canceled"><i class="fa fa-times" aria-hidden="true"></i> <%= booking.status %></p>
+        <% else %>
+          <p><i class="fa fa-times" aria-hidden="true"></i> <%= booking.status %></p>
+        <% end %>
+      </div>
     </div>
   <% end %>
 </div>
