@@ -27,8 +27,8 @@
         <div class="row">
           <div class="col-md-12">
             <blockquote>
-              <p><%= booking.review_content %></p>
-              <h5><%= booking.user.username %></h5>
+              <p class="review-content"><%= booking.review_content %></p>
+              <h5 class="review-author"><%= booking.user.username %></h5>
               <ul class="list-inline">
                 <% booking.review_rating.times do %>
                   <li><%= image_tag 'footprints-cat-32.png' %></li>
